@@ -12,9 +12,12 @@ package ch.hearc.ig.sectech.adfgvx;
 public class Application {
     public static void main(String[] args) {
         //Déclaration des variables
-      ADFGVX adfgvx = new ADFGVX();
+      // ADFGVX adfgvx = new ADFGVX();
       
       //Initialisation du table de substitution
-      adfgvx.init_tableau();
+      // adfgvx.init_tableau();
+      
+      Cryptage cr = new Cryptage();
+      System.out.println(cr.getTexteIntermediaire("salut ca va 72"));
   }
 }

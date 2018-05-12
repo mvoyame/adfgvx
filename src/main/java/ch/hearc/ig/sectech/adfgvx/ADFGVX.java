@@ -17,6 +17,7 @@ public class ADFGVX {
     
 
     public ADFGVX(){
+        this.init_tableau();
     }
   
     public HashMap<String, HashMap<String, String>> getTableau_substitution() {
