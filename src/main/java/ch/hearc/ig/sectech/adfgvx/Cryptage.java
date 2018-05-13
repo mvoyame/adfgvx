@@ -24,7 +24,7 @@ public class Cryptage extends ADFGVX {
      * @param text Texte à chiffrer
      * @return ArrayList de string correspondant au texte chiffré intermédiaire
      */
-    public static ArrayList<String> getTexteIntermediaire (String text){
+    public static ArrayList<String> getTexteIntermediaireCrypte (String text){
         // Récupération du tableau de substitution
         ArrayList<String> tabTI = new ArrayList<>();
         HashMap<String, HashMap<String, String>> tabSub = new HashMap<>(tab.getTableau_substitution());
@@ -321,6 +321,46 @@ public class Cryptage extends ADFGVX {
         }
 
         return tableDecrypted;
+    }
+    
+    /**
+     * Retourne le texte intermediaire sous forme d'ArrayList d'ArrayList
+     * @param tableDecrypted Tableau décrypté (avec le mot clé dans le bon ordre)
+     * @return Le texte intermediaire sous forme de liste
+     */
+    public ArrayList<ArrayList<String>> getTexteIntermediaireDecrypte(ArrayList<ArrayList<String>> tableDecrypted){
+        //Initialisation
+        ArrayList<ArrayList<String>> tableTextIntermediaire = new ArrayList<>();
+        ArrayList<String> lineTemp = new ArrayList<>();
+        
+        int indexTabTextInter = 0;
+        int indexTabDecrypted2 = 1;
+        int indexTabDecrypted1 = 0;
+        int checkClear = 0;
+        //Parcours du tableau décrypté pour remplir le tableau avec le texte intermediaire
+        //pour les 6 emplacements des lettres (chaque ArrayList compte 6 caractère ADFGVX)
+        for(int i = 0; i < 6; i++){
+            // j < 9 car 3*2 lineTemp + 2*Clear = 8
+            //pour chaque ArrayList contenu dans l'ArrayList tableDecrypted
+            //on récupère un caractère pour former des couples
+            //ces couples seront utilisé pour le tableau de substitution
+            for(int j = 0; j < 9; j++){
+                if(checkClear == 2){
+                    tableTextIntermediaire.add(indexTabTextInter, (ArrayList<String>) lineTemp.clone());
+                    indexTabTextInter++;
+                    lineTemp.clear();
+                    checkClear = 0;
+                }else{
+                    lineTemp.add(tableDecrypted.get(indexTabDecrypted1).get(indexTabDecrypted2));
+                    indexTabDecrypted1++;
+                    checkClear++;
+                }
+            }
+            indexTabDecrypted1 = 0;
+            indexTabDecrypted2++;
+        }
+        
+        return tableTextIntermediaire;
     }
     
     

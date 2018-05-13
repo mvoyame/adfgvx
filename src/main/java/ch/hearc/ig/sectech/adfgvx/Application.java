@@ -22,7 +22,7 @@ public class Application {
       Cryptage cr = new Cryptage();
       
       //Partie cryptage
-      ArrayList<String> TCI = cr.getTexteIntermediaire("Ce papillon est beau");
+      ArrayList<String> TCI = cr.getTexteIntermediaireCrypte("Ce papillon est beau");
       System.out.println(TCI);
       
       ArrayList<ArrayList<String>> TO = cr.getTableOrderedCrypte(TCI, "humide");
@@ -46,5 +46,7 @@ public class Application {
       System.out.println(tableDecrypte);
       cr.toStringTable(tableDecrypte);
       
+      ArrayList<ArrayList<String>> tableTextInter = cr.getTexteIntermediaireDecrypte(tableDecrypte);
+      System.out.println(tableTextInter);
   }
 }
