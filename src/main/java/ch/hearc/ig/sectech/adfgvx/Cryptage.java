@@ -227,12 +227,12 @@ public class Cryptage extends ADFGVX {
     
     /**
      * Reçoit le tableau crypté (TC), le parcours
-     * puis retourne une liste correspondante au texte final
+     * puis retourne le texte final
      * @param TC Tableau crypté
      * @return le texte final
      */
-    public ArrayList<String> getTexteCrypted(ArrayList<ArrayList<String>> TC){
-        ArrayList<String> CT = new ArrayList<>();
+    public String getTexteCrypted(ArrayList<ArrayList<String>> TC){
+        StringBuilder CT = new StringBuilder();
         
         // parcours des colonnes
         for (int i = 0; i < 6; i++) {
@@ -241,10 +241,10 @@ public class Cryptage extends ADFGVX {
             for (int j = 1; j < 7; j++) {
                 
                 // Ajoute l'élément j qui se trouve dans la colonne i
-                CT.add(TC.get(i).get(j));
+                CT.append(TC.get(i).get(j));
             }
         }
-        return CT;
+        return CT.toString();
     }
     
     /**

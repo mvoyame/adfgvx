@@ -30,7 +30,7 @@ public class Application {
       ArrayList<ArrayList<String>> TC = cr.getTableCrypted(TO, "humide");
       cr.toStringTable(TC);
       
-      ArrayList<String> CT = cr.getTexteCrypted(TC);
+      String CT = cr.getTexteCrypted(TC);
       System.out.println(CT);
   }
 }
