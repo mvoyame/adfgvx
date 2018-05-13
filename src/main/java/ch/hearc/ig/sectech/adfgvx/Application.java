@@ -5,6 +5,8 @@
  */
 package ch.hearc.ig.sectech.adfgvx;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mael.voyame
@@ -18,6 +20,8 @@ public class Application {
       // adfgvx.init_tableau();
       
       Cryptage cr = new Cryptage();
-      System.out.println(cr.getTexteIntermediaire("salut ca va 72"));
+      ArrayList<String> test = cr.getTexteIntermediaire("Ce papillon est beau donc ça passe");
+      System.out.println(test);
+      System.out.println(cr.getTableOrdered(test, "humide"));
   }
 }
