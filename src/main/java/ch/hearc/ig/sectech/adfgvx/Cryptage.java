@@ -225,4 +225,45 @@ public class Cryptage extends ADFGVX {
         return tableCrypted;
     }
     
+    /**
+     * Reçoit le tableau crypté (TC), le parcours
+     * puis retourne une liste correspondante au texte final
+     * @param TC Tableau crypté
+     * @return le texte final
+     */
+    public ArrayList<String> getTexteCrypted(ArrayList<ArrayList<String>> TC){
+        ArrayList<String> CT = new ArrayList<>();
+        
+        // parcours des colonnes
+        for (int i = 0; i < 6; i++) {
+            
+            // parcours des lignes
+            for (int j = 1; j < 7; j++) {
+                
+                // Ajoute l'élément j qui se trouve dans la colonne i
+                CT.add(TC.get(i).get(j));
+            }
+        }
+        return CT;
+    }
+    
+    /**
+     * Affiche un pseudo tableau
+     * @param TO Un tableau de liste
+     */
+    public void toStringTable(ArrayList<ArrayList<String>> TO){
+        
+        // parcours des lignes
+        for (int i = 0; i < 7; i++) {
+            System.out.print("|");
+            
+            // parcours des colonnes
+            for (int j = 0; j < 6; j++) {
+                
+                // Affiche l'élément i qui se trouve dans la colonne j
+                System.out.print(TO.get(j).get(i) + "|");
+            }
+            System.out.print("\n------------\n");
+        }
+    }
 }
