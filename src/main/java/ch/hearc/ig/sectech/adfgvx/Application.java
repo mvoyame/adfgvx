@@ -48,5 +48,8 @@ public class Application {
       
       ArrayList<ArrayList<String>> tableTextInter = cr.getTexteIntermediaireDecrypte(tableDecrypte);
       System.out.println(tableTextInter);
+      
+      StringBuilder message = cr.getMessageDecrypte(tableTextInter);
+      System.out.println(message.toString());
   }
 }

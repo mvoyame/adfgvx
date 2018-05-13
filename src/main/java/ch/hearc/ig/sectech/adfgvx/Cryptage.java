@@ -363,6 +363,37 @@ public class Cryptage extends ADFGVX {
         return tableTextIntermediaire;
     }
     
+    /**
+     * Retourne le message déchiffré
+     * @param tableTextIntermediaire tableau contenant le texte intermediaire
+     * @return Le message déchiffré
+     */
+    public StringBuilder getMessageDecrypte(ArrayList<ArrayList<String>> tableTextIntermediaire){
+        //Initialisation
+        StringBuilder message = new StringBuilder();
+        String fragment_message;
+        String keyOne;
+        String keyTwo;
+        
+        // Récupération du tableau de substitution
+        HashMap<String, HashMap<String, String>> tabSub = new HashMap<>(tab.getTableau_substitution());
+        
+        //le tableau de texte intermediaire contient 18 position
+        for(int i = 0; i < 18; i++){
+            //Récupération des couples de clé pour trouver la correspondance
+            //dans le tableau de substitution
+            keyOne = tableTextIntermediaire.get(i).get(0);
+            keyTwo = tableTextIntermediaire.get(i).get(1);
+            
+            //Recherche de la valeur dans le tableau de substitution
+            fragment_message = tabSub.get(keyOne).get(keyTwo);
+            
+            //Ajoute le fragment au message
+            message.append(fragment_message);
+        }
+        
+        return message;
+    }
     
     /**
      * Affiche un pseudo tableau
