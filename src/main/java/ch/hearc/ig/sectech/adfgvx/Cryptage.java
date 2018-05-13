@@ -6,6 +6,7 @@
 package ch.hearc.ig.sectech.adfgvx;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,7 +71,7 @@ public class Cryptage extends ADFGVX {
     public ArrayList<ArrayList<String>> getTableOrdered(ArrayList<String> TCI, String pwd){
         // Déclaration des lignes du tableau
         ArrayList<ArrayList<String>> tableOrdered = new ArrayList<>();
-        ArrayList<String> tableLine0 = new ArrayList<>();
+        // ArrayList<String> tableLine0 = new ArrayList<>();
         ArrayList<String> tableLine1 = new ArrayList<>();
         ArrayList<String> tableLine2 = new ArrayList<>();
         ArrayList<String> tableLine3 = new ArrayList<>();
@@ -81,6 +82,7 @@ public class Cryptage extends ADFGVX {
         // Séparation du mot de passe
         String[] tabSplit = pwd.split("");
         
+        /*
         // Ajout des lettres dans les lignes
         for (int i = 0; i < tabSplit.length; i++) {
             if(!TCI.get(i).isEmpty()){
@@ -119,12 +121,30 @@ public class Cryptage extends ADFGVX {
         for (int i = 30; i < 36; i++) {
             if(!TCI.get(i).isEmpty()){
                 tableLine6.add(TCI.get(i));
+            }  
+        }
+        */
+        // Version 2 : En colonne
+        tableLine1.add(tabSplit[0]);
+        tableLine2.add(tabSplit[1]);
+        tableLine3.add(tabSplit[2]);
+        tableLine4.add(tabSplit[3]);
+        tableLine5.add(tabSplit[4]);
+        tableLine6.add(tabSplit[5]);
+        for (int i = 0; i < 36; i = i+6) {
+            if(!TCI.get(i).isEmpty()){
+                tableLine1.add(TCI.get(i));
+                tableLine2.add(TCI.get(i+1));
+                tableLine3.add(TCI.get(i+2));
+                tableLine4.add(TCI.get(i+3));
+                tableLine5.add(TCI.get(i+4));
+                tableLine6.add(TCI.get(i+5));
             }
-            
         }
         
+        
         // Ajout des ligne dans le tableau pour le retour
-        tableOrdered.add(tableLine0);
+        // tableOrdered.add(tableLine0);
         tableOrdered.add(tableLine1);
         tableOrdered.add(tableLine2);
         tableOrdered.add(tableLine3);
@@ -135,4 +155,115 @@ public class Cryptage extends ADFGVX {
         return tableOrdered;
     }
     
+    /**
+     * Prend le tableau ordonné et le mot de passe afin de les parcourir,
+     * puis tester la valeur de la lettre d'en-tête (mot de passe), puis ajoute la colonne à son nouvel emplacement.
+     * @param TO Tableau ordonné 
+     * @param pwd Mot de passe
+     * @return Tableau crypté
+     */
+    public ArrayList<ArrayList<String>> getTableCrypted(ArrayList<ArrayList<String>> TO, String pwd){
+        // Déclaration des variables 
+        ArrayList<ArrayList<String>> tableCrypted = new ArrayList<>();
+        ArrayList<String> lineTemp = new ArrayList<>();
+        String lp1, lp2, lp3, lp4, lp5, lp6;
+        
+        // Ajout de ligne vide
+        for (int i = 0; i < 6; i++) {
+            tableCrypted.add(i, null);
+        }
+        
+        // Séparation du mot de passe et tri alphabethique
+        ArrayList tabSplit = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            tabSplit.add(pwd.split("")[i]); 
+        }
+        Collections.sort(tabSplit);
+        
+        // Ajout des lettres du mot de passe dans des variables
+        lp1 = (String) tabSplit.get(0);
+        lp2 = (String) tabSplit.get(1) ;
+        lp3 = (String) tabSplit.get(2) ;
+        lp4 = (String) tabSplit.get(3) ;
+        lp5 = (String) tabSplit.get(4) ; 
+        lp6 = (String) tabSplit.get(5) ;
+        
+        // Parcours de la table ordonnée (TO)
+        for (int i = 0; i < TO.size(); i++) {
+            lineTemp = (TO.get(i));
+            String currentL = lineTemp.get(0);
+            
+            // Test des valeurs de la clef
+            if(currentL.equals(lp1)){
+                // Remove la ligne null
+                tableCrypted.remove(0);
+                // Ajoute un clone de la colonne en cours
+                tableCrypted.add(0, (ArrayList<String>) lineTemp.clone());
+            }
+            if(currentL.equals(lp2)){
+                tableCrypted.remove(1);
+                tableCrypted.add(1, (ArrayList<String>) lineTemp.clone());
+            }
+            if(currentL.equals(lp3)){
+                tableCrypted.remove(2);
+                tableCrypted.add(2, (ArrayList<String>) lineTemp.clone()); 
+            }
+            if(currentL.equals(lp4)){
+                tableCrypted.remove(3);
+                tableCrypted.add(3, (ArrayList<String>) lineTemp.clone());
+            }
+            if(currentL.equals(lp5)){
+                tableCrypted.remove(4);
+                tableCrypted.add(4, (ArrayList<String>) lineTemp.clone());
+            }
+            if(currentL.equals(lp6)){
+                tableCrypted.remove(5);
+                tableCrypted.add(5, (ArrayList<String>) lineTemp.clone()); 
+            }
+        }
+           
+        return tableCrypted;
+    }
+    
+    /**
+     * Reçoit le tableau crypté (TC), le parcours
+     * puis retourne une liste correspondante au texte final
+     * @param TC Tableau crypté
+     * @return le texte final
+     */
+    public ArrayList<String> getTexteCrypted(ArrayList<ArrayList<String>> TC){
+        ArrayList<String> CT = new ArrayList<>();
+        
+        // parcours des colonnes
+        for (int i = 0; i < 6; i++) {
+            
+            // parcours des lignes
+            for (int j = 1; j < 7; j++) {
+                
+                // Ajoute l'élément j qui se trouve dans la colonne i
+                CT.add(TC.get(i).get(j));
+            }
+        }
+        return CT;
+    }
+    
+    /**
+     * Affiche un pseudo tableau
+     * @param TO Un tableau de liste
+     */
+    public void toStringTable(ArrayList<ArrayList<String>> TO){
+        
+        // parcours des lignes
+        for (int i = 0; i < 7; i++) {
+            System.out.print("|");
+            
+            // parcours des colonnes
+            for (int j = 0; j < 6; j++) {
+                
+                // Affiche l'élément i qui se trouve dans la colonne j
+                System.out.print(TO.get(j).get(i) + "|");
+            }
+            System.out.print("\n------------\n");
+        }
+    }
 }

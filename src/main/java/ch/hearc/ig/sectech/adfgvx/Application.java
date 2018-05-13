@@ -18,10 +18,19 @@ public class Application {
       
       //Initialisation du table de substitution
       // adfgvx.init_tableau();
-      
+                  
       Cryptage cr = new Cryptage();
-      ArrayList<String> test = cr.getTexteIntermediaire("Ce papillon est beau donc ça passe");
-      System.out.println(test);
-      System.out.println(cr.getTableOrdered(test, "humide"));
+      
+      ArrayList<String> TCI = cr.getTexteIntermediaire("Ce papillon est beau donc ça passe");
+      System.out.println(TCI);
+      
+      ArrayList<ArrayList<String>> TO = cr.getTableOrdered(TCI, "humide");
+      cr.toStringTable(TO);
+      
+      ArrayList<ArrayList<String>> TC = cr.getTableCrypted(TO, "humide");
+      cr.toStringTable(TC);
+      
+      ArrayList<String> CT = cr.getTexteCrypted(TC);
+      System.out.println(CT);
   }
 }
