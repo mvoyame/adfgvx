@@ -21,16 +21,16 @@ public class Application {
                   
       Cryptage cr = new Cryptage();
       
-      ArrayList<String> TCI = cr.getTexteIntermediaire("Ce papillon est beau");
+      ArrayList<String> TCI = cr.getTexteIntermediaireCrypte("Ce papillon est beau");
       System.out.println(TCI);
       
-      ArrayList<ArrayList<String>> TO = cr.getTableOrdered(TCI, "humide");
+      ArrayList<ArrayList<String>> TO = cr.getTableOrderedCrypte(TCI, "humide");
       cr.toStringTable(TO);
       
-      ArrayList<ArrayList<String>> TC = cr.getTableCrypted(TO, "humide");
+      ArrayList<ArrayList<String>> TC = cr.getTableCryptedCrypte(TO, "humide");
       cr.toStringTable(TC);
       
-      String CT = cr.getTexteCrypted(TC);
+      String CT = cr.getTexteCryptedCrypte(TC);
       System.out.println(CT);
   }
 }

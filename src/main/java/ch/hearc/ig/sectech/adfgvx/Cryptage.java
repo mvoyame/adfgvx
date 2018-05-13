@@ -24,7 +24,7 @@ public class Cryptage extends ADFGVX {
      * @param text Texte à chiffrer
      * @return ArrayList de string correspondant au texte chiffré intermédiaire
      */
-    public static ArrayList<String> getTexteIntermediaire (String text){
+    public static ArrayList<String> getTexteIntermediaireCrypte (String text){
         // Récupération du tableau de substitution
         ArrayList<String> tabTI = new ArrayList<>();
         HashMap<String, HashMap<String, String>> tabSub = new HashMap<>(tab.getTableau_substitution());
@@ -68,7 +68,7 @@ public class Cryptage extends ADFGVX {
      * @param pwd Mot de passe pour le cryptage
      * @return 
      */
-    public ArrayList<ArrayList<String>> getTableOrdered(ArrayList<String> TCI, String pwd){
+    public ArrayList<ArrayList<String>> getTableOrderedCrypte(ArrayList<String> TCI, String pwd){
         // Déclaration des lignes du tableau
         ArrayList<ArrayList<String>> tableOrdered = new ArrayList<>();
         // ArrayList<String> tableLine0 = new ArrayList<>();
@@ -166,7 +166,7 @@ public class Cryptage extends ADFGVX {
      * @param pwd Mot de passe
      * @return Tableau crypté
      */
-    public ArrayList<ArrayList<String>> getTableCrypted(ArrayList<ArrayList<String>> TO, String pwd){
+    public ArrayList<ArrayList<String>> getTableCryptedCrypte(ArrayList<ArrayList<String>> TO, String pwd){
         // Déclaration des variables 
         ArrayList<ArrayList<String>> tableCrypted = new ArrayList<>();
         ArrayList<String> lineTemp = new ArrayList<>();
@@ -235,7 +235,7 @@ public class Cryptage extends ADFGVX {
      * @param TC Tableau crypté
      * @return le texte final
      */
-    public String getTexteCrypted(ArrayList<ArrayList<String>> TC){
+    public String getTexteCryptedCrypte(ArrayList<ArrayList<String>> TC){
         StringBuilder CT = new StringBuilder();
         
         // parcours des colonnes
@@ -250,6 +250,21 @@ public class Cryptage extends ADFGVX {
         }
         return CT.toString();
     }
+    
+    public ArrayList<ArrayList<String>> getTableOrderedDecrypt(String CT){
+        ArrayList<ArrayList<String>> tableCrypted = new ArrayList<>();
+        
+        
+        return tableCrypted;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * Affiche un pseudo tableau
