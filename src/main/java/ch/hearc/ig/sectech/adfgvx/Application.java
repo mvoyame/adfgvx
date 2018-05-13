@@ -21,7 +21,7 @@ public class Application {
                   
       Cryptage cr = new Cryptage();
       
-      ArrayList<String> TCI = cr.getTexteIntermediaire("Ce papillon est beau donc ça passe");
+      ArrayList<String> TCI = cr.getTexteIntermediaire("Ce papillon est beau");
       System.out.println(TCI);
       
       ArrayList<ArrayList<String>> TO = cr.getTableOrdered(TCI, "humide");

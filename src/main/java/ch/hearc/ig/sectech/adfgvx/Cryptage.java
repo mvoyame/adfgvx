@@ -82,6 +82,10 @@ public class Cryptage extends ADFGVX {
         // Séparation du mot de passe
         String[] tabSplit = pwd.split("");
         
+        for (int i = 0; TCI.size()<37; i++) {
+            TCI.add("F");
+        }
+        
         /*
         // Ajout des lettres dans les lignes
         for (int i = 0; i < tabSplit.length; i++) {
