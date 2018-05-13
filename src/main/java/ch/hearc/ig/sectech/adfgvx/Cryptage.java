@@ -251,11 +251,45 @@ public class Cryptage extends ADFGVX {
         return CT.toString();
     }
     
-    public ArrayList<ArrayList<String>> getTableOrderedDecrypt(String CT){
-        ArrayList<ArrayList<String>> tableCrypted = new ArrayList<>();
+    /**
+     * Retourne le tableau crypté avec le mot clé trié alphabétiquement
+     * @param CT Texte chiffré que l'on veut décrypter
+     * @param pwd Mot clé utilisé pour crypter
+     * @return Le tableau trié avec le mot clé
+     */
+    public ArrayList<ArrayList<String>> getTableOrderedDecrypt(String CT, String pwd){
+        //Initialisation
+        ArrayList<ArrayList<String>> tableOrdered = new ArrayList<>();
+        ArrayList<String> motCle = new ArrayList<>();
+        ArrayList<String> textChiffre = new ArrayList<>();
+        ArrayList<String> lineTemp = new ArrayList<>();
         
+        //Ajoute le mot clé dans une ligne temporaire et le trie par ordre alphabétique
+        for (int i = 0; i < 6; i++) {
+            motCle.add(pwd.split("")[i]); 
+        }
+        Collections.sort(motCle);
         
-        return tableCrypted;
+        //Récupère le texte chiffré dans une liste pour la parcourir
+        for (int i = 0; i < CT.length(); i++) {
+            textChiffre.add(CT.split("")[i]); 
+        }
+        
+        //Préparation du tableau crypté ordonné
+        int indexMin = 0;
+        int indexMax = 6;
+        for (int i = 0; i < pwd.length(); i++){
+            lineTemp.add(motCle.get(i));
+            for(int j = indexMin; j < indexMax; j++){
+                lineTemp.add(textChiffre.get(j));
+            }
+            indexMin = indexMin+6;
+            indexMax = indexMax+6;
+            tableOrdered.add(i , (ArrayList<String>) lineTemp.clone());
+            lineTemp.clear();
+        }
+        
+        return tableOrdered;
     }
     
     

@@ -21,6 +21,7 @@ public class Application {
                   
       Cryptage cr = new Cryptage();
       
+      //Partie cryptage
       ArrayList<String> TCI = cr.getTexteIntermediaireCrypte("Ce papillon est beau");
       System.out.println(TCI);
       
@@ -28,9 +29,17 @@ public class Application {
       cr.toStringTable(TO);
       
       ArrayList<ArrayList<String>> TC = cr.getTableCryptedCrypte(TO, "humide");
+      System.out.println(TC);
       cr.toStringTable(TC);
       
       String CT = cr.getTexteCryptedCrypte(TC);
       System.out.println(CT);
+      System.out.println("__________________________________________________");
+      
+      //Partie décryptage
+      ArrayList<ArrayList<String>> TCO = cr.getTableOrderedDecrypt(CT, "humide");
+      System.out.println(TCO);
+      cr.toStringTable(TCO);
+      
   }
 }
