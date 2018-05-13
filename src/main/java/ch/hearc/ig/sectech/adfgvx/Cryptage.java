@@ -81,6 +81,7 @@ public class Cryptage extends ADFGVX {
         // Séparation du mot de passe
         String[] tabSplit = pwd.split("");
         
+        /*
         // Ajout des lettres dans les lignes
         for (int i = 0; i < tabSplit.length; i++) {
             if(!TCI.get(i).isEmpty()){
@@ -119,9 +120,27 @@ public class Cryptage extends ADFGVX {
         for (int i = 30; i < 36; i++) {
             if(!TCI.get(i).isEmpty()){
                 tableLine6.add(TCI.get(i));
-            }
-            
+            }  
         }
+        */
+        // Version 2 : En colonne
+        tableLine1.add(tabSplit[0]);
+        tableLine2.add(tabSplit[1]);
+        tableLine3.add(tabSplit[2]);
+        tableLine4.add(tabSplit[3]);
+        tableLine5.add(tabSplit[4]);
+        tableLine6.add(tabSplit[5]);
+        for (int i = 0; i < 36; i = i+6) {
+            if(!TCI.get(i).isEmpty()){
+                tableLine1.add(TCI.get(i));
+                tableLine2.add(TCI.get(i+1));
+                tableLine3.add(TCI.get(i+2));
+                tableLine4.add(TCI.get(i+3));
+                tableLine5.add(TCI.get(i+4));
+                tableLine6.add(TCI.get(i+5));
+            }
+        }
+        
         
         // Ajout des ligne dans le tableau pour le retour
         tableOrdered.add(tableLine0);
