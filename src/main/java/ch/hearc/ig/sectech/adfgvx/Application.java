@@ -22,24 +22,29 @@ public class Application {
       Cryptage cr = new Cryptage();
       
       //Partie cryptage
-      ArrayList<String> TCI = cr.getTexteIntermediaireCrypte("Ce papillon est beau");
+      ArrayList<String> TCI = cr.getTexteIntermediaire("Ce papillon est beau");
       System.out.println(TCI);
       
       ArrayList<ArrayList<String>> TO = cr.getTableOrderedCrypte(TCI, "humide");
+      System.out.println(TO);
       cr.toStringTable(TO);
       
-      ArrayList<ArrayList<String>> TC = cr.getTableCryptedCrypte(TO, "humide");
+      ArrayList<ArrayList<String>> TC = cr.getTableCrypted(TO, "humide");
       System.out.println(TC);
       cr.toStringTable(TC);
       
-      String CT = cr.getTexteCryptedCrypte(TC);
+      String CT = cr.getTexteCrypted(TC);
       System.out.println(CT);
       System.out.println("__________________________________________________");
       
       //Partie décryptage
-      ArrayList<ArrayList<String>> TCO = cr.getTableOrderedDecrypt(CT, "humide");
-      System.out.println(TCO);
-      cr.toStringTable(TCO);
+      ArrayList<ArrayList<String>> tableCrypteOrdonne = cr.getTableOrderedDecrypt(CT, "humide");
+      System.out.println(tableCrypteOrdonne);
+      cr.toStringTable(tableCrypteOrdonne);
+      
+      ArrayList<ArrayList<String>> tableDecrypte = cr.getTableDecrypted(tableCrypteOrdonne, "humide");
+      System.out.println(tableDecrypte);
+      cr.toStringTable(tableDecrypte);
       
   }
 }

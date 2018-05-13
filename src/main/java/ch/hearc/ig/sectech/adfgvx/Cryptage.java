@@ -24,7 +24,7 @@ public class Cryptage extends ADFGVX {
      * @param text Texte à chiffrer
      * @return ArrayList de string correspondant au texte chiffré intermédiaire
      */
-    public static ArrayList<String> getTexteIntermediaireCrypte (String text){
+    public static ArrayList<String> getTexteIntermediaire (String text){
         // Récupération du tableau de substitution
         ArrayList<String> tabTI = new ArrayList<>();
         HashMap<String, HashMap<String, String>> tabSub = new HashMap<>(tab.getTableau_substitution());
@@ -166,7 +166,7 @@ public class Cryptage extends ADFGVX {
      * @param pwd Mot de passe
      * @return Tableau crypté
      */
-    public ArrayList<ArrayList<String>> getTableCryptedCrypte(ArrayList<ArrayList<String>> TO, String pwd){
+    public ArrayList<ArrayList<String>> getTableCrypted(ArrayList<ArrayList<String>> TO, String pwd){
         // Déclaration des variables 
         ArrayList<ArrayList<String>> tableCrypted = new ArrayList<>();
         ArrayList<String> lineTemp = new ArrayList<>();
@@ -235,7 +235,7 @@ public class Cryptage extends ADFGVX {
      * @param TC Tableau crypté
      * @return le texte final
      */
-    public String getTexteCryptedCrypte(ArrayList<ArrayList<String>> TC){
+    public String getTexteCrypted(ArrayList<ArrayList<String>> TC){
         StringBuilder CT = new StringBuilder();
         
         // parcours des colonnes
@@ -264,7 +264,7 @@ public class Cryptage extends ADFGVX {
         ArrayList<String> textChiffre = new ArrayList<>();
         ArrayList<String> lineTemp = new ArrayList<>();
         
-        //Ajoute le mot clé dans une ligne temporaire et le trie par ordre alphabétique
+        //Ajoute le mot clé dans une liste et le trie par ordre alphabétique
         for (int i = 0; i < 6; i++) {
             motCle.add(pwd.split("")[i]); 
         }
@@ -292,12 +292,36 @@ public class Cryptage extends ADFGVX {
         return tableOrdered;
     }
     
-    
-    
-    
-    
-    
-    
+    /**
+     * Retourne le tableau décrypté avec le mot clé dans le bon ordre
+     * @param tableauOrdonne Tableau trié alphabétiquement sur le mot clé
+     * @param pwd Mot clé utilisé pour le cryptage
+     * @return Retourne le tableau décrypté avec le mot clé dans le bon ordre
+     */
+    public ArrayList<ArrayList<String>> getTableDecrypted(ArrayList<ArrayList<String>> tableauOrdonne, String pwd){
+        //Initialisation
+        ArrayList<ArrayList<String>> tableDecrypted = new ArrayList<>();
+        ArrayList<String> motCle = new ArrayList<>();
+        
+        //Ajoute le mot clé dans une ligne temporaire et le trie par ordre alphabétique
+        for (int i = 0; i < pwd.length(); i++) {
+            motCle.add(pwd.split("")[i]);
+        }
+        
+        int compteur = 0;
+        for(int i = 0; i < pwd.length(); i++){
+            for(int j = 0; j < pwd.length(); j++){
+                //Si dans le tableau ordonné on trouve la première lettre ("h" - motCle.get(compteur)) etc...
+                // on ajoute cette liste dans le tableau décrypté
+                if(tableauOrdonne.get(j).get(0).equals(motCle.get(compteur))){
+                    tableDecrypted.add(tableauOrdonne.get(j));
+                }
+            }
+            compteur++;
+        }
+
+        return tableDecrypted;
+    }
     
     
     /**
