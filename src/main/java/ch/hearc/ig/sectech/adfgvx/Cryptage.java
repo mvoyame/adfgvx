@@ -71,7 +71,6 @@ public class Cryptage extends ADFGVX {
     public ArrayList<ArrayList<String>> getTableOrderedCrypte(ArrayList<String> TCI, String pwd){
         // Déclaration des lignes du tableau
         ArrayList<ArrayList<String>> tableOrdered = new ArrayList<>();
-        // ArrayList<String> tableLine0 = new ArrayList<>();
         ArrayList<String> tableLine1 = new ArrayList<>();
         ArrayList<String> tableLine2 = new ArrayList<>();
         ArrayList<String> tableLine3 = new ArrayList<>();
@@ -86,49 +85,7 @@ public class Cryptage extends ADFGVX {
             TCI.add("F");
         }
         
-        /*
         // Ajout des lettres dans les lignes
-        for (int i = 0; i < tabSplit.length; i++) {
-            if(!TCI.get(i).isEmpty()){
-                tableLine0.add(tabSplit[i]);
-            }
-        }
-        for (int i = 0; i < 6; i++) {
-            if(!TCI.get(i).isEmpty()){
-                tableLine1.add(TCI.get(i));
-            }
-        }
-        for (int i = 6; i < 12; i++) {
-            if(!TCI.get(i).isEmpty()){
-                tableLine2.add(TCI.get(i));
-            }
-            
-        }
-        for (int i = 12; i < 18; i++) {
-            if(!TCI.get(i).isEmpty()){
-                tableLine3.add(TCI.get(i));
-            }
-            
-        }
-        for (int i = 18; i < 24; i++) {
-            if(!TCI.get(i).isEmpty()){
-                tableLine4.add(TCI.get(i));
-            }
-            
-        }
-        for (int i = 24; i < 30; i++) {
-            if(!TCI.get(i).isEmpty()){
-                tableLine5.add(TCI.get(i));
-            }
-            
-        }
-        for (int i = 30; i < 36; i++) {
-            if(!TCI.get(i).isEmpty()){
-                tableLine6.add(TCI.get(i));
-            }  
-        }
-        */
-        // Version 2 : En colonne
         tableLine1.add(tabSplit[0]);
         tableLine2.add(tabSplit[1]);
         tableLine3.add(tabSplit[2]);
@@ -145,10 +102,8 @@ public class Cryptage extends ADFGVX {
                 tableLine6.add(TCI.get(i+5));
             }
         }
-        
-        
+              
         // Ajout des ligne dans le tableau pour le retour
-        // tableOrdered.add(tableLine0);
         tableOrdered.add(tableLine1);
         tableOrdered.add(tableLine2);
         tableOrdered.add(tableLine3);

@@ -22,7 +22,7 @@ public class Application {
        */
       //Partie cryptage
       //Message à crypter --> Texte Intermediaire
-      ArrayList<String> TCI = cr.getTexteIntermediaireCrypte("Ce papillon est beau");
+      ArrayList<String> TCI = cr.getTexteIntermediaireCrypte("ce papillon est beau");
       System.out.println("Message à chiffrer :\n");
       System.out.println("\t" + "Ce papillon est beau\n\n");
       System.out.println("Texte intermediaire du message :\n");
